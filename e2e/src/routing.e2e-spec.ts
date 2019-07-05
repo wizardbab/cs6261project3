@@ -17,4 +17,16 @@ describe('Routing Tests', () => {
     element(by.id('brackets')).click();
     expect(element(by.id('subpageTitle')).getText()).toBe('Brackets');
   });
+  
+  it('should navigate to home from registration', () => {
+    browser.get('/registration');
+    element(by.id('hello')).click();
+    expect(element(by.id('subpageTitle')).getText()).toBe('Brackets App');
+  });
+  
+  it('should navigate to home from brackets', () => {
+    browser.get('/brackets');
+    element(by.id('hello')).click();
+    expect(element(by.id('subpageTitle')).getText()).toBe('Brackets App');
+  });
 });
