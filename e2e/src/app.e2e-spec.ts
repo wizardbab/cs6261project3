@@ -181,3 +181,98 @@ describe('Success scenarios', () => {
     expect(element(by.id('champion')).getText()).toBe('Winner: Nasus');
   });
 });
+
+describe('Failure scenarios', () => {
+  beforeEach(() => {
+    browser.get('/');
+    element(by.id('registration')).click();
+  });
+  
+  it('should give an error for no contestants', () => {
+    element(by.id('submit')).click();
+    expect(element(by.id('message')).getText()).toBe('Should be 2, 4, or 8 contestants');
+  });
+  
+  it('should give an error for one contestant', () => {
+    element(by.id('contestant0')).sendKeys('Dave');
+    element(by.id('submit')).click();
+    expect(element(by.id('message')).getText()).toBe('Should be 2, 4, or 8 contestants');
+  });
+  
+  it('should give an error for three contestants', () => {
+    element(by.id('contestant0')).sendKeys('Joe');
+    element(by.id('contestant2')).sendKeys('DeAndre');
+    element(by.id('contestant6')).sendKeys('LeFlop');
+    element(by.id('submit')).click();
+    expect(element(by.id('message')).getText()).toBe('Should be 2, 4, or 8 contestants');
+  });
+  
+  it('should give an error for five contestants', () => {
+    element(by.id('contestant0')).sendKeys('Thing 1');
+    element(by.id('contestant1')).sendKeys('Thing 2');
+    element(by.id('contestant2')).sendKeys('Cat in the Hat');
+    element(by.id('contestant3')).sendKeys('Sally');
+    element(by.id('contestant4')).sendKeys('Dr. Seuss');
+    element(by.id('submit')).click();
+    expect(element(by.id('message')).getText()).toBe('Should be 2, 4, or 8 contestants');
+  });
+  
+  it('should give an error for seven contestants', () => {
+    element(by.id('contestant0')).sendKeys('Sheldon');
+    element(by.id('contestant1')).sendKeys('Leonard');
+    element(by.id('contestant2')).sendKeys('Howard');
+    element(by.id('contestant3')).sendKeys('Raj');
+    element(by.id('contestant4')).sendKeys('Penny');
+    element(by.id('contestant5')).sendKeys('Amy');
+    element(by.id('contestant6')).sendKeys('Bernadette');
+    element(by.id('submit')).click();
+    expect(element(by.id('message')).getText()).toBe('Should be 2, 4, or 8 contestants');
+  });
+  
+  it('should give an error for two contestants if radio button isn\'t selected', () => {
+    element(by.id('contestant0')).sendKeys('Guy 1');
+    element(by.id('contestant1')).sendKeys('Guy 2');
+    element(by.id('submit')).click();
+    element(by.id('brackets')).click();
+    element(by.id('completeRound')).click();
+    expect(element(by.id('message')).getText()).toBe('Please complete all matches');
+  });
+  
+  it('should give an error for four contestants if a radio button isn\'t selected', () => {
+    element(by.id('fill4')).click();
+    element(by.id('submit')).click();
+    element(by.id('brackets')).click();
+    element(by.id('completeRound')).click();
+    expect(element(by.id('message')).getText()).toBe('Please complete all matches');
+    element(by.id('match1')).all(by.tagName('input')).get(1).click();
+    element(by.id('completeRound')).click();
+    expect(element(by.id('message')).getText()).toBe('Please complete all matches');
+    element(by.id('match2')).all(by.tagName('input')).get(0).click();
+    element(by.id('completeRound')).click();
+    element(by.id('completeRound')).click();
+    expect(element(by.id('message')).getText()).toBe('Please complete all matches');
+  });
+  
+  it('should give an error for eight contestants if a radio button isn\'t selected', () => {
+    element(by.id('fill8')).click();
+    element(by.id('submit')).click();
+    element(by.id('brackets')).click();
+    element(by.id('completeRound')).click();
+    expect(element(by.id('message')).getText()).toBe('Please complete all matches');
+    element(by.id('match1')).all(by.tagName('input')).get(1).click();
+    element(by.id('match2')).all(by.tagName('input')).get(1).click();
+    element(by.id('match3')).all(by.tagName('input')).get(1).click();
+    element(by.id('completeRound')).click();
+    expect(element(by.id('message')).getText()).toBe('Please complete all matches');
+    element(by.id('match4')).all(by.tagName('input')).get(1).click();
+    element(by.id('completeRound')).click();
+    element(by.id('match1')).all(by.tagName('input')).get(0).click();
+    element(by.id('completeRound')).click();
+    expect(element(by.id('message')).getText()).toBe('Please complete all matches');
+    element(by.id('match2')).all(by.tagName('input')).get(0).click();
+    element(by.id('completeRound')).click();
+    element(by.id('completeRound')).click();
+    expect(element(by.id('message')).getText()).toBe('Please complete all matches');
+  });
+});
+
