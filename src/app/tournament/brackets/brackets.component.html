@@ -2,12 +2,12 @@
 
 <h3>Round: {{roundId}}</h3>
 
-<h4 *ngIf="message">{{message}}</h4>
+<h4 *ngIf="message" id="message">{{message}}</h4>
 
-<h4 *ngIf="getChampion()">Winner: {{getChampion()}}</h4>
+<h4 *ngIf="getChampion()" id="champion">Winner: {{getChampion()}}</h4>
 
 <div *ngFor="let m of seeds; index as i">
-  <div>
+  <div [id]="'match' + (i + 1)">
     <h4>Match {{i+1}}</h4>
     <input type="radio"
            [name]="'match'+m.id"
@@ -23,4 +23,4 @@
 <button
     *ngIf="!getChampion()" 
     type='button'
-    (click)="completeRound()">Complete Round</button>
+    (click)="completeRound()" id="completeRound">Complete Round</button>
