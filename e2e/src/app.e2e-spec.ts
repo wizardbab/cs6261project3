@@ -17,10 +17,10 @@ describe('workspace-project App', () => {
 describe('Success scenarios', () => {
   beforeEach(() => {
     browser.get('/');
+    element(by.id('registration')).click();
   });
   
   it('should successfully register two entered names', () => {
-    element(by.id('registration')).click();
     element(by.id('contestant0')).sendKeys('Jack');
     element(by.id('contestant1')).sendKeys('Jill');
     element(by.id('submit')).click();
@@ -28,7 +28,6 @@ describe('Success scenarios', () => {
   });
   
   it('should successfully register four entered names', () => {
-    element(by.id('registration')).click();
     element(by.id('contestant0')).sendKeys('Bobby');
     element(by.id('contestant1')).sendKeys('Samuel');
     element(by.id('contestant2')).sendKeys('Linda');
@@ -38,7 +37,6 @@ describe('Success scenarios', () => {
   });
   
   it('should successfully register eight entered names', () => {
-    element(by.id('registration')).click();
     element(by.id('contestant0')).sendKeys('Aatrox');
     element(by.id('contestant1')).sendKeys('Ahri');
     element(by.id('contestant2')).sendKeys('Akali');
@@ -52,7 +50,6 @@ describe('Success scenarios', () => {
   });
   
   it('should successfully register two autofilled players', () => {
-    element(by.id('registration')).click();
     element(by.id('fill2')).click();
     expect(element(by.id('contestant0')).getAttribute('value')).toBe('Zoe');
     expect(element(by.id('contestant1')).getAttribute('value')).toBe('Kaylee');
@@ -61,7 +58,6 @@ describe('Success scenarios', () => {
   });
   
   it('should successfully register four autofilled players', () => {
-    element(by.id('registration')).click();
     element(by.id('fill4')).click();
     expect(element(by.id('contestant0')).getAttribute('value')).toBe('John');
     expect(element(by.id('contestant1')).getAttribute('value')).toBe('Paul');
@@ -72,7 +68,6 @@ describe('Success scenarios', () => {
   });
   
   it('should successfully register eight autofilled players', () => {
-    element(by.id('registration')).click();
     element(by.id('fill8')).click();
     expect(element(by.id('contestant0')).getAttribute('value')).toBe('Leia');
     expect(element(by.id('contestant1')).getAttribute('value')).toBe('Luke');
@@ -87,7 +82,6 @@ describe('Success scenarios', () => {
   });
   
   it('should successfully match two players up in a bracket', () => {
-    element(by.id('registration')).click();
     element(by.id('contestant0')).sendKeys('Shen');
     element(by.id('contestant1')).sendKeys('Zed');
     element(by.id('submit')).click();
@@ -97,7 +91,6 @@ describe('Success scenarios', () => {
   });
   
   it('should successfully match four players up in a bracket', () => {
-    element(by.id('registration')).click();
     element(by.id('contestant0')).sendKeys('Benjamin');
     element(by.id('contestant1')).sendKeys('Ratul');
     element(by.id('contestant2')).sendKeys('Scott');
@@ -111,7 +104,6 @@ describe('Success scenarios', () => {
   });
   
   it('should successfully match eight players up in a bracket', () => {
-    element(by.id('registration')).click();
     element(by.id('contestant0')).sendKeys('Naruto');
     element(by.id('contestant1')).sendKeys('Sasuke');
     element(by.id('contestant2')).sendKeys('Sakura');
@@ -133,7 +125,6 @@ describe('Success scenarios', () => {
   });
   
   it('should successfully declare a champion in a two-player tournament', () => {
-    element(by.id('registration')).click();
     element(by.id('contestant0')).sendKeys('Shen');
     element(by.id('contestant1')).sendKeys('Zed');
     element(by.id('submit')).click();
@@ -144,7 +135,6 @@ describe('Success scenarios', () => {
   });
   
   it('should successfully declare a champion in a four-player tournament', () => {
-    element(by.id('registration')).click();
     element(by.id('fill4')).click();
     element(by.id('submit')).click();
     element(by.id('brackets')).click();
@@ -157,7 +147,6 @@ describe('Success scenarios', () => {
   });
   
   it('should successfully declare a champion in an eight-player tournament', () => {
-    element(by.id('registration')).click();
     element(by.id('contestant0')).sendKeys('Irelia');
     element(by.id('contestant1')).sendKeys('Trundle');
     element(by.id('contestant2')).sendKeys('Kennen');
